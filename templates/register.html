@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head><title>Register</title><link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}"></head>
+<body>
+<div class="container">
+<h2>Candidate Registration</h2>
+{% with messages = get_flashed_messages() %}
+  {% if messages %}<p class="error">{{ messages[0] }}</p>{% endif %}
+{% endwith %}
+<form method="POST">
+    <input type="text" name="candidate_id" placeholder="Candidate ID" required><br>
+    <input type="text" name="name" placeholder="Full Name" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
+    <input type="number" name="age" placeholder="Age" required><br>
+    <input type="text" name="subject" placeholder="Exam Subject" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <p>After submit, webcam will open. Press 's' to capture photo.</p>
+    <button type="submit">Register & Capture Photo</button>
+    <p>Already Registered?<a href="/login"> Login</a></p>
+</form>
+</div>
+</body>
+</html>

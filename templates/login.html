@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Login</title>
+
+<link rel="stylesheet"
+href="{{url_for('static',filename='css/style.css')}}">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Candidate Login</h2>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}<p class="error">{{ messages[0] }}</p>{% endif %}
+{% endwith %}
+
+<form method="POST">
+
+<input type="email"
+name="email"
+placeholder="Email">
+
+<input type="password"
+name="password"
+placeholder="Password">
+
+<button type="submit">
+Login
+</button>
+
+</form>
+
+<p>
+New User?
+<a href="/register">Register</a>
+</p>
+
+</div>
+
+</body>
+
+</html>
