@@ -3,18 +3,14 @@
 <head>
 <title>Exam Session</title>
 <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
-<style>
-.btn {padding:10px 20px; margin:5px; border:none; border-radius:5px; color:white; cursor:pointer; text-decoration:none;}
-.btn-pause {background:orange;}
-.btn-resume {background:green;}
-.btn-end {background:red;}
-.status {font-size:20px; font-weight:bold; color:blue; margin:20px 0;}
-</style>
 </head>
 <body>
-<input type="text" id="candidate_id" value="{{candidate_id}}">
-<script src="{{url_for('static', filename='js/monitor.js')}}"></script>
-<div class="container">
+<div class="navbar">
+    <h1>Exam Session - {{candidate_id}}</h1>
+    <div><a href="/logout">Logout</a></div>
+</div>
+
+<div class="container dashboard">
 <h2>Exam Session</h2>
 
 {% if status %}
@@ -23,12 +19,16 @@
     <p class="status">Exam Started</p>
 {% endif %}
 
-<a href="{{url_for('session_action', action='pause')}}" class="btn btn-pause">Pause</a>
-<a href="{{url_for('session_action', action='resume')}}" class="btn btn-resume">Resume</a>
-<a href="{{url_for('session_action', action='end')}}" class="btn btn-end">End Exam</a>
-
-<br><br>
+<div class="btn-group">
+    <a href="{{url_for('session_action', action='pause')}}" class="btn btn-pause">Pause</a>
+    <a href="{{url_for('session_action', action='resume')}}" class="btn btn-resume">Resume</a>
+    <a href="{{url_for('session_action', action='end')}}" class="btn btn-end">End Exam</a>
+</div>
+<br>
 <a href="{{url_for('dashboard')}}">Back to Dashboard</a>
 </div>
+
+<script src="{{url_for('static', filename='js/monitor.js')}}"></script>
 </body>
 </html>
+

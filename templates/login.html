@@ -1,49 +1,49 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-
-<title>Login</title>
-
-<link rel="stylesheet"
-href="{{url_for('static',filename='css/style.css')}}">
-
+    <meta charset="UTF-8">
+    <title>Candidate Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
-
 <body>
 
-<div class="container">
+    <div class="navbar">
+        <h1>Exam Monitoring System</h1>
+        <div>
+            <a href="/">Home</a>
+            <a href="/register">Register</a>
+        </div>
+    </div>
 
-<h2>Candidate Login</h2>
+    <div class="container">
+        <h2>Candidate Login</h2>
 
-{% with messages = get_flashed_messages() %}
-  {% if messages %}<p class="error">{{ messages[0] }}</p>{% endif %}
-{% endwith %}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            {% for category, message in messages %}
+              <p class="{{ category }}">{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
 
-<form method="POST">
+        <form method="POST">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter Email" required>
+            
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter Password" required>
+            
+            <button type="submit" class="btn">Login</button>
+        </form>
 
-<input type="email"
-name="email"
-placeholder="Email">
+        <p style="margin-top:15px;">
+            New User? <a href="/register">Register Here</a>
+        </p>
+    </div>
 
-<input type="password"
-name="password"
-placeholder="Password">
-
-<button type="submit">
-Login
-</button>
-
-</form>
-
-<p>
-New User?
-<a href="/register">Register</a>
-</p>
-
-</div>
+    <footer>
+        © 2026 Exam Monitoring System
+    </footer>
 
 </body>
-
 </html>

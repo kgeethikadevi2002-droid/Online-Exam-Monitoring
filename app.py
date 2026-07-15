@@ -16,21 +16,20 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        candidate_id = request.form['candidate_id']  # you had typo: 'candiade_id'
+        candidate_id = request.form['candidate_id'] 
         name = request.form['name']
         email = request.form['email']
         age = request.form['age']
         subject = request.form['subject']
         password = request.form['password']
         
-        # 1. Capture photo first
         photo_path, msg = capture_photo(candidate_id)
         
         if not photo_path:
             flash(f"Registration Failed! {msg}", "danger")
             return render_template('register.html')
         
-        # 2. SAVE TO DATABASE - THIS WAS MISSING
+       
         success = add_candidate(candidate_id, name, email, age, subject, password, photo_path)
         
         if success:
@@ -100,6 +99,7 @@ def session_page():
     if 'candidate_id' not in session:
         return redirect(url_for('login'))
     return render_template('session.html', status="Exam Started")
+
 @app.route('/logout')
 def logout():
     session.clear()
@@ -107,3 +107,4 @@ def logout():
 
 if __name__=="__main__":
     app.run(debug=True)
+

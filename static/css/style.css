@@ -1,57 +1,251 @@
-body{
-
-background:#f4f4f4;
-font-family:Arial;
-
+/* ========== GLOBAL ========== */
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
 }
 
-.container{
-
-width:400px;
-margin:80px auto;
-padding:30px;
-background:white;
-border-radius:8px;
-box-shadow:0px 0px 10px gray;
-text-align:center;
-
+body {
+    background: #eef2f7;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    color: #2c3e50;
+    font-size: 16px;
 }
 
-input{
-
-width:100%;
-padding:10px;
-margin:10px 0;
-
+/* ========== NAVBAR ========== */
+.navbar {
+    background: #2563eb;
+    color: white;
+    padding: 18px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
+}
+.navbar h1 { 
+    font-size: 24px; 
+    font-weight: 700;
+}
+.navbar a { 
+    color: white; 
+    text-decoration: none; 
+    margin-left: 25px; 
+    font-weight: 500;
+    font-size: 16px;
+}
+.navbar a:hover { 
+    opacity: 0.8;
 }
 
-button{
-
-width:100%;
-padding:10px;
-background:blue;
-color:white;
-border:none;
-cursor:pointer;
-
+/* ========== HOME PAGE TITLE COLOR CHANGE ========== */
+.home-title {
+    color:rgb(34, 33, 33);
+    font-size: 36px;
+    font-weight: 800;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(124, 58, 237, 0.2);
 }
 
-button:hover{
-
-background:darkblue;
-
+/* ========== CONTAINER - FOR LOGIN/REGISTER/HOME ========== */
+.container {
+    width: 500px;
+    margin: 100px auto;
+    padding: 40px 45px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    text-align: center;
+}
+.container h2 { 
+    margin-bottom: 25px; 
+    color: #2563eb; /* Blue for Login/Register */
+    font-size: 28px;
 }
 
-a{
-
-text-decoration:none;
-color:blue;
-
+/* ========== LOGIN / REGISTER PAGE CSS STYLE ========== */
+form {
+    text-align: left;
+}
+label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 5px;
+    display: block;
+}
+input {
+    width: 100%;
+    padding: 14px 16px;
+    margin: 8px 0 18px 0;
+    border: 2px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #f9fafb;
+    transition: 0.3s;
+}
+input:focus {
+    border-color: #2563eb;
+    background: white;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+}
+.container {
+    width: 450px;
+    margin: 120px auto;
+    padding: 40px 45px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    text-align: center;
+}
+.container h2 { 
+    margin-bottom: 25px; 
+    color: #2563eb;
+    font-size: 28px;
+}
+/* ========== FORM ========== */
+form { text-align: left; }
+label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #4b5563;
+    margin-bottom: 5px;
+    display: block;
+}
+input {
+    width: 100%;
+    padding: 14px 16px;
+    margin: 8px 0 18px 0;
+    border: 2px solid #d1d5db;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #f9fafb;
+}
+input:focus {
+    border-color: #2563eb;
+    background: white;
+    outline: none;
 }
 
-.error{
-
-color:red;
-font-weight:bold;
-
+/* ========== BUTTONS ========== */
+button, .btn {
+    width: 100%;
+    padding: 14px;
+    background: #2563eb; /* Default Blue Button */
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 17px;
+    font-weight: 700;
+    margin-top: 15px;
+    text-decoration: none;
+    display: inline-block;
+    transition: 0.3s;
 }
+button:hover, .btn:hover { 
+    background: #1d4ed8;
+    transform: translateY(-2px);
+}
+
+/* PAUSE, RESUME, END BUTTONS - DIFFERENT COLORS */
+.btn-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: center;
+}
+.btn-group .btn {
+    width: 32%;
+    flex: 1;
+}
+
+.btn-pause { 
+    background: #f59e0b; /* Orange/Yellow */
+}
+.btn-pause:hover { 
+    background: #d97706; 
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+}
+
+.btn-resume { 
+    background: #16a34a; /* Green */
+}
+.btn-resume:hover { 
+    background: #15803d; 
+    box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
+}
+
+.btn-end { 
+    background: #dc2626; /* Red */
+}
+.btn-end:hover { 
+    background: #b91c1c; 
+    box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+/* ========== SESSION DASHBOARD ========== */
+.dashboard { 
+    padding: 30px; 
+    text-align: center; 
+    max-width: 800px;
+    margin: 50px auto;
+}
+.status { 
+    font-size: 22px; 
+    font-weight: bold; 
+    color: #2563eb; 
+    margin: 25px 0; 
+    padding: 15px;
+    background: #eff6ff;
+    border-radius: 10px;
+}
+.status-detected { 
+    color: #16a34a; 
+    font-weight: bold; 
+    font-size: 22px; 
+}
+.status-not-detected { 
+    color: #dc2626; 
+    font-weight: bold; 
+    font-size: 22px; 
+}
+
+/* ========== MESSAGES ========== */
+.error {
+    color: #b91c1c;
+    background: #fee2e2;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 15px 0;
+    border-left: 4px solid #dc2626;
+}
+.success {
+    color: #15803d;
+    background: #dcfce7;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-weight: 600;
+    margin: 15px 0;
+    border-left: 4px solid #16a34a;
+}
+
+a { text-decoration: none; color: #2563eb; font-weight: 500; }
+a:hover { text-decoration: underline; }
+
+footer { 
+    text-align: center; 
+    padding: 25px; 
+    margin-top: 50px; 
+    color: #6b7280;
+    font-size: 14px;
+}
+
+
+
+
+
+
+
+

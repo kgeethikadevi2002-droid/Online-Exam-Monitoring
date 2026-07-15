@@ -28,14 +28,16 @@ def get_candidate_by_email(email):
     return candidate
 
 def create_session(candidate_id):
-    session_id = str(uuid.uuid4())
-    start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    conn = get_connection()
-    conn.execute("INSERT INTO Session(session_id, candidate_id, start_time, end_time, status) VALUES (?,?,?,?,?)",
+     conn = sqlite3.connect(DATABASE, timeout=30)
+     cursor = conn.cursor()
+     session_id = str(uuid.uuid4())
+     start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+     conn = get_connection()
+     conn.execute("INSERT INTO Session(session_id, candidate_id, start_time, end_time, status) VALUES (?,?,?,?,?)",
                  (session_id, candidate_id, start_time, None, "Started"))
-    conn.commit()
-    conn.close()
-    return session_id
+     conn.commit()
+     conn.close()
+     return session_id
 
 def update_session_status(session_id, status):
     end_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S") if status == "Ended" else None
@@ -55,4 +57,15 @@ def log_event(candidate_id, event_type, remarks=""):
                  (candidate_id, event_type, timestamp, remarks))
     conn.commit()
     conn.close()
-    print(f"Logged: {event_type} for {candidate_id}")
+    print(f"[LOGGED] {event_type} for {candidate_id} at {timestamp}")
+
+def moderation():
+    # Optional: only allow admin to see this
+    # if session.get('role')!= 'admin': return redirect('/login')
+
+    conn = sqlite3.connect(DATABASE)
+    c = conn.cursor()
+    c.execute("SELECT * FROM EventLog ORDER BY timestamp DESC") # Latest first
+    events = c.fetchall()
+    conn.close()
+
