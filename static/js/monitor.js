@@ -27,3 +27,5 @@ window.addEventListener('blur', function() {
 window.addEventListener('focus', function() {
     logEvent("Browser Focus Gained", "User came back to tab");
 });
+
+

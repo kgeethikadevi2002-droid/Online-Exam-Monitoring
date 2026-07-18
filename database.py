@@ -18,7 +18,7 @@ def add_candidate(candidate_id, name, email, age, subject, password, photo_path)
         conn.close()
         return True
     except sqlite3.IntegrityError as e:
-        print("DB ERROR:", e) # This will show in terminal
+        print("DB ERROR:", e)
         return False
 
 def get_candidate_by_email(email):
@@ -28,11 +28,9 @@ def get_candidate_by_email(email):
     return candidate
 
 def create_session(candidate_id):
-     conn = sqlite3.connect(DATABASE, timeout=30)
-     cursor = conn.cursor()
+     conn = get_connection()
      session_id = str(uuid.uuid4())
      start_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-     conn = get_connection()
      conn.execute("INSERT INTO Session(session_id, candidate_id, start_time, end_time, status) VALUES (?,?,?,?,?)",
                  (session_id, candidate_id, start_time, None, "Started"))
      conn.commit()
@@ -59,13 +57,11 @@ def log_event(candidate_id, event_type, remarks=""):
     conn.close()
     print(f"[LOGGED] {event_type} for {candidate_id} at {timestamp}")
 
-def moderation():
-    # Optional: only allow admin to see this
-    # if session.get('role')!= 'admin': return redirect('/login')
-
-    conn = sqlite3.connect(DATABASE)
-    c = conn.cursor()
-    c.execute("SELECT * FROM EventLog ORDER BY timestamp DESC") # Latest first
-    events = c.fetchall()
+def log_violation_with_screenshot(candidate_id, event_type, screenshot_path):
+    timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    conn = get_connection()
+    conn.execute("INSERT INTO EventLog(candidate_id, event_type, timestamp, remarks) VALUES (?,?,?,?)",
+                 (candidate_id, event_type, timestamp, f"Screenshot: {screenshot_path}"))
+    conn.commit()
     conn.close()
-
+    print(f"[VIOLATION] {event_type} saved: {screenshot_path}")

@@ -7,17 +7,12 @@
 <body>
 <div class="navbar">
     <h1>Exam Session - {{candidate_id}}</h1>
-    <div><a href="/logout">Logout</a></div>
+    <a href="/logout">Logout</a>
 </div>
 
 <div class="container dashboard">
 <h2>Exam Session</h2>
-
-{% if status %}
-    <p class="status">{{status}}</p>
-{% else %}
-    <p class="status">Exam Started</p>
-{% endif %}
+<p id="status" class="status">{{status}}</p>
 
 <div class="btn-group">
     <a href="{{url_for('session_action', action='pause')}}" class="btn btn-pause">Pause</a>
@@ -26,9 +21,5 @@
 </div>
 <br>
 <a href="{{url_for('dashboard')}}">Back to Dashboard</a>
-</div>
-
-<script src="{{url_for('static', filename='js/monitor.js')}}"></script>
 </body>
 </html>
-

@@ -46,3 +46,4 @@ CREATE TABLE IF NOT EXISTS EventLog(
 conn.commit()
 conn.close()
 print("Database Created Successfully")
+
